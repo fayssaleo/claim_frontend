@@ -1,0 +1,42 @@
+<template>
+  <v-col class="d-flex" cols="12" sm="4">
+    <v-text-field
+      :label="inputModel.name"
+      v-model="inputModel.value"
+      outlined
+    ></v-text-field>
+    <v-btn @click="removeInputEstimate(inputModel)" class="ml-2 error">delete</v-btn>
+  </v-col>
+</template>
+
+<script>
+export default {
+  name: "ClaimFrontendInputs",
+  props: ["input_item","refreshInputEstimate"],
+  data() {
+    return {
+        inputModel:{
+            id:null,
+            name:"",
+            value:""
+        }
+    };
+  },
+
+  mounted() {
+    this.inputModel.id=this.input_item.id;
+    this.inputModel.name=this.input_item.name;
+    this.inputModel.value=this.input_item.value;
+
+  },
+
+  methods: {
+    removeInputEstimate(item) {
+        console.info('remove', item);
+        this.refreshInputEstimate(item.id);
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped></style>
